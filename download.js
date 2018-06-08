@@ -18,22 +18,22 @@ module.exports = {
     let stream = bucket.file(filename).createReadStream()
 
     res.writeHead(200, { 'Content-Type': 'application/pdf'})
-		// stream.pipe(res)
+    // stream.pipe(res)
 		
     stream.on('data', data => {
-			console.log(data)
-			res.write(data)
-		})
+	console.log(data)
+	res.write(data)
+    })
 
-		stream.on('error', err => {
-			console.log('error read stream', err)
-			return res.status(500).json(err)
-		})
+    stream.on('error', err => {
+	console.log('error read stream', err)
+        return res.status(500).json(err)
+    })
 
-		stream.on('end', () => {
-			res.end()
-		})
-	}
+    stream.on('end', () => {
+	res.end()
+    })
+  }
 }
 
 // CLIENT SIDE 
